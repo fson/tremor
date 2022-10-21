@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import {
     Color,
     Height,
@@ -23,6 +24,7 @@ interface BaseChartProps {
     showGridLines?: boolean,
     height?: Height,
     marginTop?: MarginTop,
+    children?: ReactNode
 }
 
 export default BaseChartProps;
