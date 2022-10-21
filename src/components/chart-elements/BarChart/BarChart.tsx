@@ -51,6 +51,7 @@ const BarChart = ({
     showGridLines = true,
     height = 'h-80',
     marginTop = 'mt-0',
+    children,
 }: BarChartProps) => {
     const [legendHeight, setLegendHeight] = useState(60);
     return (
@@ -177,6 +178,7 @@ const BarChart = ({
 
                         ))
                     }
+                    {children}
                 </ReChartsBarChart>
             </ResponsiveContainer>
         </div>

@@ -43,6 +43,7 @@ const AreaChart = ({
     showGradient = true,
     height = 'h-80',
     marginTop = 'mt-0',
+    children,
 }: BaseChartProps) => {
     const [legendHeight, setLegendHeight] = useState(60);
     return (
@@ -154,6 +155,7 @@ const AreaChart = ({
                         />
                     ))}
                 
+                    {children}
                 </ReChartsAreaChart>
             </ResponsiveContainer>
         </div>
