@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   TextAlignments,
@@ -16,27 +16,27 @@ interface TableHeaderCellProps {
   children: React.ReactNode;
 }
 
-const TableHeaderCell = ({
-  textAlignment = TextAlignments.Left,
-  children,
-}: TableHeaderCellProps) => (
-  <>
-    <th
-      className={classNames(
-        "tr-sticky tr-whitespace-nowrap",
-        parseTextAlignment(textAlignment),
-        getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
-        spacing.none.top,
-        spacing.twoXl.paddingLeft,
-        spacing.twoXl.paddingRight,
-        spacing.xl.paddingTop,
-        spacing.xl.paddingBottom,
-        fontWeight.lg
-      )}
-    >
-      {children}
-    </th>
-  </>
+const TableHeaderCell = forwardRef<HTMLTableCellElement, TableHeaderCellProps>(
+  ({ textAlignment = TextAlignments.Left, children }, ref) => (
+    <>
+      <th
+        className={classNames(
+          "tr-sticky tr-whitespace-nowrap",
+          parseTextAlignment(textAlignment),
+          getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
+          spacing.none.top,
+          spacing.twoXl.paddingLeft,
+          spacing.twoXl.paddingRight,
+          spacing.xl.paddingTop,
+          spacing.xl.paddingBottom,
+          fontWeight.lg
+        )}
+        ref={ref}
+      >
+        {children}
+      </th>
+    </>
+  )
 );
 
 export default TableHeaderCell;

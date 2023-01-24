@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   classNames,
@@ -11,18 +11,21 @@ interface TableHeadProps {
   children: React.ReactElement[] | React.ReactElement;
 }
 
-const TableHead = ({ children }: TableHeadProps) => (
-  <>
-    <thead
-      className={classNames(
-        "tr-text-left",
-        getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
-        fontWeight.lg
-      )}
-    >
-      {children}
-    </thead>
-  </>
+const TableHead = forwardRef<HTMLTableSectionElement, TableHeadProps>(
+  ({ children }, ref) => (
+    <>
+      <thead
+        className={classNames(
+          "tr-text-left",
+          getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
+          fontWeight.lg
+        )}
+        ref={ref}
+      >
+        {children}
+      </thead>
+    </>
+  )
 );
 
 export default TableHead;

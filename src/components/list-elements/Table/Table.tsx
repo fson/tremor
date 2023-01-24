@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   classNames,
@@ -15,20 +15,23 @@ export interface TableProps {
   children: React.ReactNode;
 }
 
-const Table = ({ marginTop = "mt-0", children }: TableProps) => (
-  <div className="tr-overflow-auto">
-    <table
-      className={classNames(
-        "tremor-base tr-w-full tr-tabular-nums",
-        parseMarginTop(marginTop),
-        getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
-        fontSize.sm,
-        fontWeight.sm
-      )}
-    >
-      {children}
-    </table>
-  </div>
+const Table = forwardRef<HTMLTableElement, TableProps>(
+  ({ marginTop = "mt-0", children }, ref) => (
+    <div className="tr-overflow-auto">
+      <table
+        className={classNames(
+          "tremor-base tr-w-full tr-tabular-nums",
+          parseMarginTop(marginTop),
+          getColorVariantsFromColorThemeValue(defaultColors.text).textColor,
+          fontSize.sm,
+          fontWeight.sm
+        )}
+        ref={ref}
+      >
+        {children}
+      </table>
+    </div>
+  )
 );
 
 export default Table;
