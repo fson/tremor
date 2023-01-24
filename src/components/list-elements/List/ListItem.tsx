@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { classNames, fontSize, parseSpaceX, spacing } from "lib";
 import { SpaceX } from "../../../lib";
@@ -8,22 +8,25 @@ export interface ListItemProps {
   children: React.ReactNode;
 }
 
-const ListItem = ({ spaceX = "", children }: ListItemProps) => {
-  return (
-    <>
-      <li
-        className={classNames(
-          "tr-w-full tr-flex tr-justify-between tr-items-center tr-truncate tr-tabular-nums",
-          spaceX ? parseSpaceX(spaceX) : spaceX,
-          spacing.sm.paddingTop,
-          spacing.sm.paddingBottom,
-          fontSize.sm
-        )}
-      >
-        {children}
-      </li>
-    </>
-  );
-};
+const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
+  ({ spaceX = "", children }, ref) => {
+    return (
+      <>
+        <li
+          className={classNames(
+            "tr-w-full tr-flex tr-justify-between tr-items-center tr-truncate tr-tabular-nums",
+            spaceX ? parseSpaceX(spaceX) : spaceX,
+            spacing.sm.paddingTop,
+            spacing.sm.paddingBottom,
+            fontSize.sm
+          )}
+          ref={ref}
+        >
+          {children}
+        </li>
+      </>
+    );
+  }
+);
 
 export default ListItem;
